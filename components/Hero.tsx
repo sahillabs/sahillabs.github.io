@@ -2,7 +2,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import MagneticButton from "./MagneticButton";
-import ProfilePhoto from "./ProfilePhoto";
 import { profile, stats } from "@/lib/data";
 
 const ease = [0.21, 0.5, 0.25, 1] as const;
@@ -31,9 +30,19 @@ export default function Hero() {
 
   return (
     <header ref={ref} className="hero" id="top">
+      <div className="hero-bg" aria-hidden>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/shots/profile.jpg"
+          alt=""
+          onError={(e) => {
+            (e.currentTarget as HTMLImageElement).style.display = "none";
+          }}
+        />
+        <div className="hero-duotone" />
+        <div className="hero-scrim" />
+      </div>
       <motion.div className="wrap" style={{ y: yUp, opacity: fade }}>
-        <div className="hero-grid">
-        <div className="hero-copy">
         <motion.div className="status" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1, ease }}>
           <span className="live" /> Open to opportunities · {profile.location}
         </motion.div>
@@ -74,9 +83,6 @@ export default function Hero() {
             </div>
           ))}
         </motion.div>
-        </div>
-        <ProfilePhoto />
-        </div>
       </motion.div>
 
       <motion.div className="scroll-hint" animate={{ y: [0, 8, 0] }} transition={{ duration: 1.8, repeat: Infinity }}>

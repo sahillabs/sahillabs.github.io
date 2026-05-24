@@ -62,6 +62,7 @@ export const projects: Project[] = [
     icon: "mic",
     span: "lg",
     featured: true,
+    image: "/shots/ait-scribe.png",
   },
   {
     name: "AIHR Portal",

@@ -26,14 +26,7 @@ export default function Projects() {
               className={`span-${p.span} ${p.featured ? "featured" : ""}`}
               delay={(i % 3) * 0.06}
             >
-              {p.image ? (
-                <div className="tile-shot">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={p.image} alt={`${p.name} preview`} loading="lazy" />
-                </div>
-              ) : (
-                <div className="ico"><Icon /></div>
-              )}
+              <div className="ico"><Icon /></div>
               <div className="flag">{p.flag}</div>
               <h3>{p.name}</h3>
               <p>{p.blurb}</p>
