@@ -286,4 +286,41 @@ section { padding: 96px 0; position: relative; }
 .loader-bar > i { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
 .loader-pct { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--faint); margin-top: 9px; }
 
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .blob, .float-ico { animation: none; } }
+/* ===== UX UPGRADES: skip link · focus · progress · nav · back-to-top · toast · ⌘K ===== */
+.skip-link { position: fixed; top: -64px; left: 16px; z-index: 10000; background: var(--accent); color: #160D00; font-family: var(--font-mono), monospace; font-weight: 600; font-size: 14px; padding: 10px 16px; border-radius: 8px; transition: top .2s ease; }
+.skip-link:focus { top: 16px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+.scroll-progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 70; transform-origin: 0 50%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+
+.nav-actions { display: flex; align-items: center; gap: 12px; }
+.cmdk-btn { display: inline-flex; align-items: center; gap: 4px; font-family: var(--font-mono), monospace; font-size: 13px; color: var(--muted); border: 1px solid var(--glass-brd); background: var(--glass); border-radius: 8px; padding: 7px 11px; cursor: pointer; transition: border-color .2s, color .2s; }
+.cmdk-btn:hover { border-color: var(--accent); color: var(--text); }
+.cmdk-btn .k { font-size: 12px; }
+@media (max-width: 600px) { .cmdk-btn { display: none; } }
+.nav-links a.active { color: var(--text); }
+.nav-links a.active::after { width: 100%; }
+
+.back-to-top { position: fixed; bottom: 26px; right: 26px; z-index: 60; width: 46px; height: 46px; display: flex; align-items: center; justify-content: center; border-radius: 12px; font-size: 20px; color: var(--text); background: var(--glass); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border: 1px solid var(--glass-brd); transition: border-color .2s, color .2s; }
+.back-to-top:hover { border-color: var(--accent); color: var(--accent); }
+
+.toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 9500; padding: 12px 20px; border-radius: 10px; font-family: var(--font-mono), monospace; font-size: 14px; color: var(--text); border: 1px solid var(--accent); }
+
+.cmdk-overlay { position: fixed; inset: 0; z-index: 9600; background: rgba(6,5,4,.6); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); display: flex; align-items: flex-start; justify-content: center; padding-top: 14vh; }
+.cmdk { width: min(560px, 92vw); border-radius: 14px; overflow: hidden; }
+.cmdk-input { display: flex; align-items: center; gap: 10px; padding: 16px 18px; border-bottom: 1px solid var(--glass-brd); }
+.cmdk-prompt { font-family: var(--font-mono), monospace; color: var(--accent); }
+.cmdk-input input { flex: 1; background: transparent; border: 0; outline: none; color: var(--text); font-family: var(--font-sans), sans-serif; font-size: 16px; }
+.cmdk-input kbd { font-family: var(--font-mono), monospace; font-size: 11px; color: var(--faint); border: 1px solid var(--glass-brd); border-radius: 5px; padding: 2px 7px; }
+.cmdk-list { max-height: 320px; overflow-y: auto; padding: 8px; }
+.cmdk-item { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 11px 13px; border-radius: 9px; background: transparent; border: 0; cursor: pointer; text-align: left; color: var(--text); }
+.cmdk-item.active { background: rgba(255,176,0,.12); }
+.cmdk-label { font-size: 14.5px; }
+.cmdk-hint { font-family: var(--font-mono), monospace; font-size: 11.5px; color: var(--faint); white-space: nowrap; }
+.cmdk-empty { padding: 22px; text-align: center; color: var(--faint); font-family: var(--font-mono), monospace; font-size: 14px; }
+
+/* blur-up for preview screenshots */
+.browser-shot img { filter: blur(16px); transform: scale(1.05); opacity: .5; transition: filter .6s ease, transform .6s ease, opacity .6s ease; }
+.browser-shot img.loaded { filter: none; transform: none; opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .blob, .float-ico { animation: none; } .browser-shot img { filter: none; transform: none; opacity: 1; } }

@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import MagneticButton from "./MagneticButton";
+import Counter from "./Counter";
 import { profile, stats } from "@/lib/data";
 
 const ease = [0.21, 0.5, 0.25, 1] as const;
@@ -78,7 +79,7 @@ export default function Hero() {
         <motion.div className="stats" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.85, ease }}>
           {stats.map((s) => (
             <div className="stat glass" key={s.label}>
-              <div className="num grad-text">{s.num}</div>
+              <div className="num grad-text"><Counter value={s.num} /></div>
               <div className="lbl">{s.label}</div>
             </div>
           ))}

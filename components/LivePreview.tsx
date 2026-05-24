@@ -1,5 +1,5 @@
 "use client";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { projects, Project } from "@/lib/data";
 
@@ -7,6 +7,11 @@ const urlFor = (name: string) => (name === "RecoveryCart" ? "recoverycart.app" :
 
 function PreviewCard({ p, flip }: { p: Project; flip: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => {
+    if (imgRef.current?.complete) setLoaded(true);
+  }, []);
   const mx = useMotionValue(0.5);
   const my = useMotionValue(0.5);
   const rx = useSpring(useTransform(my, [0, 1], [8, -8]), { stiffness: 150, damping: 18 });
@@ -43,7 +48,13 @@ function PreviewCard({ p, flip }: { p: Project; flip: boolean }) {
           </div>
           <div className="browser-shot">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={p.image} alt={`${p.name} preview`} />
+            <img
+              ref={imgRef}
+              className={loaded ? "loaded" : ""}
+              src={p.image}
+              alt={`${p.name} preview`}
+              onLoad={() => setLoaded(true)}
+            />
           </div>
         </motion.div>
       </div>
