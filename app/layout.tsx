@@ -10,7 +10,7 @@ import CommandPalette from "@/components/CommandPalette";
 import Toast from "@/components/Toast";
 import BackToTop from "@/components/BackToTop";
 
-const SITE = "https://sahillabs.github.io";
+const SITE = "https://sahillabs.dev";
 const DESCRIPTION =
   "Full-Stack Developer at AIThinkers building production AI products: cross-platform desktop apps with native audio and offline speech, serverless NestJS backends on AWS, and React frontends.";
 
@@ -20,6 +20,7 @@ export const metadata: Metadata = {
   description: DESCRIPTION,
   keywords: ["Sahil Khatkar", "Full-Stack Developer", "NestJS", "React", "AWS", "AI", "TypeScript", "Next.js"],
   authors: [{ name: "Sahil Khatkar" }],
+  alternates: { canonical: "/" },
   openGraph: {
     title: "Sahil Khatkar — Full-Stack Developer",
     description: "Production AI products end to end — desktop apps, serverless NestJS on AWS, and React frontends.",
@@ -38,6 +39,20 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = { themeColor: "#100C0A" };
 
+const PERSON_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Sahil Khatkar",
+  url: SITE,
+  jobTitle: "Full-Stack Developer",
+  description: DESCRIPTION,
+  worksFor: { "@type": "Organization", name: "AIThinkers" },
+  sameAs: [
+    "https://github.com/sahillabs",
+    "https://www.linkedin.com/in/sahil-khatkar-b55562170",
+  ],
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -49,6 +64,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link
           href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
           rel="stylesheet"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(PERSON_JSONLD) }}
         />
       </head>
       <body>

@@ -34,7 +34,7 @@ export default function Hero() {
       <div className="hero-bg" aria-hidden>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/shots/profile.jpg"
+          src="/shots/profile.webp"
           alt=""
           onError={(e) => {
             (e.currentTarget as HTMLImageElement).style.display = "none";

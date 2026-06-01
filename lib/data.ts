@@ -62,7 +62,7 @@ export const projects: Project[] = [
     icon: "mic",
     span: "lg",
     featured: true,
-    image: "/shots/ait-scribe.png",
+    image: "/shots/ait-scribe.webp",
   },
   {
     name: "AIHR Portal",
@@ -108,7 +108,7 @@ export const projects: Project[] = [
     stack: ["Next.js", "TypeScript", "Prisma", "Shopify API"],
     icon: "cart",
     span: "sm",
-    image: "/shots/recoverycart.png",
+    image: "/shots/recoverycart.webp",
   },
   {
     name: "AI Work Assistant",
